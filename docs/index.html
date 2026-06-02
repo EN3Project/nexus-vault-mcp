@@ -486,6 +486,52 @@
       font-family: "Inter", sans-serif;
     }
 
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 24px;
+      border-radius: 999px;
+      font: 700 0.98rem/1 "Inter", "Noto Sans JP", sans-serif;
+      transition: transform 150ms ease, box-shadow 150ms ease;
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(110deg, var(--accent-purple), var(--accent-cyan));
+      color: #fff;
+      box-shadow: 0 0 24px var(--glow-purple);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 36px var(--glow-cyan);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(17, 24, 39, 0.76);
+      color: var(--text-primary);
+      backdrop-filter: blur(12px);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(0, 212, 255, 0.45);
+      box-shadow: 0 0 18px var(--glow-cyan);
+    }
+
     .github-link {
       display: inline-flex;
       align-items: center;
@@ -602,6 +648,10 @@
           <span class="badge">🟣 Local-first</span>
           <span class="badge">⚡ MCP Standard</span>
         </div>
+        <div class="hero-cta">
+          <a class="btn-primary" href="https://github.com/EN3Project/knowledge-nexus#セットアップ">セットアップを見る</a>
+          <a class="btn-secondary" href="https://github.com/EN3Project/knowledge-nexus-template">テンプレートを使う →</a>
+        </div>
       </div>
     </section>
 
@@ -638,7 +688,7 @@
         <h2 class="section-title" id="agents-title"><span>AI エージェント チーム</span></h2>
         <div class="agents-grid">
           <article class="card agent-card">
-            <div class="agent-art"><img src="assets/librarian-clean.png" alt=""></div>
+            <div class="agent-art"><img src="assets/librarian-clean.png" alt="Librarian エージェント — 司書・検索"></div>
             <div class="agent-body">
               <span class="agent-icon">📚</span>
               <h3 class="agent-name">Librarian <span>@librarian</span></h3>
@@ -648,7 +698,7 @@
             </div>
           </article>
           <article class="card agent-card">
-            <div class="agent-art"><img src="assets/investigator-clean.png" alt=""></div>
+            <div class="agent-art"><img src="assets/investigator-clean.png" alt="Investigator エージェント — 調査員・外部収集"></div>
             <div class="agent-body">
               <span class="agent-icon">🔍</span>
               <h3 class="agent-name">Investigator <span>@investigator</span></h3>
@@ -658,7 +708,7 @@
             </div>
           </article>
           <article class="card agent-card">
-            <div class="agent-art"><img src="assets/analyst-clean.png" alt=""></div>
+            <div class="agent-art"><img src="assets/analyst-clean.png" alt="Analyst エージェント — 分析官・構造化"></div>
             <div class="agent-body">
               <span class="agent-icon">🧠</span>
               <h3 class="agent-name">Analyst <span>@analyst</span></h3>
@@ -668,7 +718,7 @@
             </div>
           </article>
           <article class="card agent-card">
-            <div class="agent-art"><img src="assets/critic-clean.png" alt=""></div>
+            <div class="agent-art"><img src="assets/critic-clean.png" alt="Critic エージェント — 査読官・品質管理"></div>
             <div class="agent-body">
               <span class="agent-icon">⚖️</span>
               <h3 class="agent-name">Critic <span>@critic</span></h3>
@@ -678,7 +728,7 @@
             </div>
           </article>
           <article class="card agent-card">
-            <div class="agent-art"><img src="assets/scribe-clean.png" alt=""></div>
+            <div class="agent-art"><img src="assets/scribe-clean.png" alt="Scribe エージェント — 書記官・記録"></div>
             <div class="agent-body">
               <span class="agent-icon">✍️</span>
               <h3 class="agent-name">Scribe <span>@scribe</span></h3>
@@ -688,7 +738,7 @@
             </div>
           </article>
           <article class="card agent-card">
-            <div class="agent-art"><img src="assets/curator-clean.png" alt=""></div>
+            <div class="agent-art"><img src="assets/curator-clean.png" alt="Curator エージェント — 学芸員・保守"></div>
             <div class="agent-body">
               <span class="agent-icon">🗂️</span>
               <h3 class="agent-name">Curator <span>@curator</span></h3>
