@@ -116,9 +116,25 @@ function readNote(relativePath) {
   return fs.readFileSync(fullPath, "utf-8");
 }
 
+const WRITE_ALLOWED_PREFIXES = [
+  "index/",
+  "99_System/Handoff/",
+  "99_System/Memory/",
+];
+const WRITE_ALLOWED_EXACT = ["99_System/VaultIndex.md"];
+
 function writeNote(relativePath, content) {
   if (!relativePath.endsWith(".md")) {
     throw new Error("Only Markdown files (.md) can be written");
+  }
+  const normalized = relativePath.replace(/\\/g, "/");
+  const allowed =
+    WRITE_ALLOWED_PREFIXES.some((p) => normalized.startsWith(p)) ||
+    WRITE_ALLOWED_EXACT.includes(normalized);
+  if (!allowed) {
+    throw new Error(
+      `Write not allowed: ${relativePath}. Permitted paths: ${[...WRITE_ALLOWED_PREFIXES, ...WRITE_ALLOWED_EXACT].join(", ")}`
+    );
   }
   const fullPath = resolveVaultPath(relativePath);
   const dir = path.dirname(fullPath);

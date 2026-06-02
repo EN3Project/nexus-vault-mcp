@@ -4,7 +4,8 @@
   "description": "Obsidian Vault を中核とした、マルチ LLM 対応のパーソナル知識管理システム",
   "type": "module",
   "scripts": {
-    "start": "node nexus-vault.js"
+    "start": "node nexus-vault.js",
+    "rebuild-index": "node 99_System/Scripts/rebuild_vault_index.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0"

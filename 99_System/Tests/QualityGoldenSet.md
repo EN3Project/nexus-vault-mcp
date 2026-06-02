@@ -65,3 +65,36 @@
 
 **Expected:**
 - 同一フォーマットで `99_System/Handoff/CURRENT_CONTEXT.md` に書き込む
+
+---
+
+## Case 006: unknown command
+
+**Input:** `unknown-command`
+
+**Expected:**
+- 既知コマンド一覧を提示する
+- 近いコマンドとして勝手に実行しない
+
+---
+
+## Case 007: vault_write — 許可外パス
+
+**Input:** `vault_write("99_System/Scripts/evil.md", "...")`
+
+**Expected:**
+- `Write not allowed` エラーを返す（Scripts は許可パス外）
+
+**Input:** `vault_write("index/03_Resources/note.md", "...")`
+
+**Expected:**
+- 正常に書き込み完了メッセージを返す
+
+---
+
+## Case 008: vault_write — 非 Markdown ファイル
+
+**Input:** `vault_write("index/test.txt", "content")`
+
+**Expected:**
+- `Only Markdown files (.md) can be written` エラーを返す
