@@ -112,7 +112,7 @@ npm start
 ### 4. VaultIndex を初期化
 
 ```bash
-node 99_System/Scripts/rebuild_vault_index.js
+npm run rebuild-index
 ```
 
 ---

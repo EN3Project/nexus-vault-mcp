@@ -67,14 +67,14 @@ const TOOLS = [
 
 // --- ヘルパー ---
 
-function resolveVaultPath(relativePath) {
+function resolveProjectPath(relativePath) {
   const base = path.resolve(VAULT_PATH, "..");
   const resolved = path.resolve(base, relativePath);
-  const rel = path.relative(base, resolved);
+  const rel = path.relative(base, resolved).replace(/\\/g, "/");
   if (rel.startsWith("..") || path.isAbsolute(rel)) {
     throw new Error(`Access denied: ${relativePath}`);
   }
-  return resolved;
+  return { fullPath: resolved, normalizedRelative: rel };
 }
 
 function searchIndex(query) {
@@ -111,7 +111,7 @@ function searchIndex(query) {
 }
 
 function readNote(relativePath) {
-  const fullPath = resolveVaultPath(relativePath);
+  const { fullPath } = resolveProjectPath(relativePath);
   if (!fs.existsSync(fullPath)) return `ファイルが見つかりません: ${relativePath}`;
   return fs.readFileSync(fullPath, "utf-8");
 }
@@ -127,20 +127,20 @@ function writeNote(relativePath, content) {
   if (!relativePath.endsWith(".md")) {
     throw new Error("Only Markdown files (.md) can be written");
   }
-  const normalized = relativePath.replace(/\\/g, "/");
+  // 正規化後のパスで許可判定（index/../ 等のバイパスを防ぐ）
+  const { fullPath, normalizedRelative } = resolveProjectPath(relativePath);
   const allowed =
-    WRITE_ALLOWED_PREFIXES.some((p) => normalized.startsWith(p)) ||
-    WRITE_ALLOWED_EXACT.includes(normalized);
+    WRITE_ALLOWED_PREFIXES.some((p) => normalizedRelative.startsWith(p)) ||
+    WRITE_ALLOWED_EXACT.includes(normalizedRelative);
   if (!allowed) {
     throw new Error(
       `Write not allowed: ${relativePath}. Permitted paths: ${[...WRITE_ALLOWED_PREFIXES, ...WRITE_ALLOWED_EXACT].join(", ")}`
     );
   }
-  const fullPath = resolveVaultPath(relativePath);
   const dir = path.dirname(fullPath);
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(fullPath, content, "utf-8");
-  return `書き込み完了: ${relativePath}`;
+  return `書き込み完了: ${normalizedRelative}`;
 }
 
 // --- MCP サーバーファクトリ ---

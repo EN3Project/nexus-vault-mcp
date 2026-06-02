@@ -46,7 +46,7 @@
 **Expected:**
 - `.md` 以外の拡張子は `Only Markdown files (.md) can be written` エラーを返す
 
-**Input:** `vault_write("../../../etc/passwd", "content")`
+**Input:** `vault_write("../../../etc/passwd.md", "content")`
 
 **Expected:**
 - パストラバーサルを検出して `Access denied` エラーを返す
@@ -98,3 +98,12 @@
 
 **Expected:**
 - `Only Markdown files (.md) can be written` エラーを返す
+
+---
+
+## Case 009: vault_write — prefix bypass
+
+**Input:** `vault_write("index/../99_System/Scripts/evil.md", "...")`
+
+**Expected:**
+- 正規化後のパスが `99_System/Scripts/evil.md` となり、許可外として `Write not allowed` エラーを返す
