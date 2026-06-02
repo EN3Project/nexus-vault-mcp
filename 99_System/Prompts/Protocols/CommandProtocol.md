@@ -12,7 +12,7 @@ Knowledge Nexus のコマンド仕様。`SYSTEM_MANIFEST.md` は起動時の最�
 2. `99_System/Handoff/CURRENT_CONTEXT.md` が存在する場合は自動読み込みせず、短期作業文脈の扱いをユーザーに確認する（→ 短期文脈確認）。
 3. `index/99_System/Reports/` 内の最新 `*-weekly-maintenance.md` を確認する。7日以上前または存在しない場合は週次メンテナンスの実行を提案する。未読（`status: pending-review`）レポートが存在する場合はその旨を通知する。
 4. `index/Clippings/` の未処理ファイル件数を確認し、1件以上あれば件数を通知して即処理（`process-clippings`）を促す（weekly-maintenance を待たない）。
-5. Vault MCP サーバーの起動確認：`http://127.0.0.1:3100/mcp` に接続できるか確認し、応答がなければ `node 99_System/mcp/nexus-vault.js` をバックグラウンドで起動する。起動後は `vault_search`, `vault_read`, `vault_write` ツールが利用可能になる。**Windows 注意:** `curl` は `Invoke-WebRequest` のエイリアスのため `-s` フラグが使えずハングする。`curl.exe -s --max-time 3 http://127.0.0.1:3100/mcp`（実バイナリ）または `Invoke-WebRequest -Uri "http://127.0.0.1:3100/mcp" -TimeoutSec 3` を使用すること。
+5. Vault MCP サーバーの起動確認：`http://127.0.0.1:3100/mcp` に接続できるか確認し、応答がなければ `node nexus-vault.js` をバックグラウンドで起動する。起動後は `vault_search`, `vault_read`, `vault_write` ツールが利用可能になる。**Windows 注意:** `curl` は `Invoke-WebRequest` のエイリアスのため `-s` フラグが使えずハングする。`curl.exe -s --max-time 3 http://127.0.0.1:3100/mcp`（実バイナリ）または `Invoke-WebRequest -Uri "http://127.0.0.1:3100/mcp" -TimeoutSec 3` を使用すること。
 
 ### 自己コンテキスト参照
 
@@ -229,7 +229,7 @@ Vault に蓄積されたノート群を横断的に合成し、パターン・�
 
 ### 除外対象
 
-`Daily_Notes` / `00_Inbox/Archive` / `99_System/Reports` / `99_System/Handoff` / `99_System/Memory` / `99_System/mcp` / `99_System/Scripts` / `99_System/Templates` / `99_System/Tests`
+`Daily_Notes` / `00_Inbox/Archive` / `99_System/Reports` / `99_System/Handoff` / `99_System/Memory` / `99_System/Scripts` / `99_System/Templates` / `99_System/Tests`
 
 ### 実行タイミング
 

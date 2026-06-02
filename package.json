@@ -1,0 +1,15 @@
+{
+  "name": "knowledge-nexus",
+  "version": "1.0.0",
+  "description": "Obsidian Vault を中核とした、マルチ LLM 対応のパーソナル知識管理システム",
+  "type": "module",
+  "scripts": {
+    "start": "node nexus-vault.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

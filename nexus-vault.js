@@ -70,7 +70,10 @@ const TOOLS = [
 function resolveVaultPath(relativePath) {
   const base = path.resolve(VAULT_PATH, "..");
   const resolved = path.resolve(base, relativePath);
-  if (!resolved.startsWith(base)) throw new Error(`Access denied: ${relativePath}`);
+  const rel = path.relative(base, resolved);
+  if (rel.startsWith("..") || path.isAbsolute(rel)) {
+    throw new Error(`Access denied: ${relativePath}`);
+  }
   return resolved;
 }
 
@@ -157,7 +160,15 @@ const httpServer = http.createServer(async (req, res) => {
     return;
   }
 
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  const origin = req.headers.origin;
+  const isLocalOrigin = !origin || /^https?:\/\/(127\.0\.0\.1|localhost)(:\d+)?$/.test(origin);
+  if (!isLocalOrigin) {
+    res.writeHead(403);
+    res.end("Forbidden");
+    return;
+  }
+  res.setHeader("Access-Control-Allow-Origin", origin || "*");
+  if (origin) res.setHeader("Vary", "Origin");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, mcp-session-id");
 
