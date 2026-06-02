@@ -231,7 +231,7 @@ Knowledge Nexus の核となるエンジン。LLM と Vault を MCP プロトコ
 
 ## ライセンス
 
-**MIT License with Commons Clause + Attribution Condition**
+**Source-available License: MIT-based with Commons Clause + Attribution Condition**
 
 - 個人利用・改変・非商用配布は自由
 - **商用利用（販売・有償ホスティング・有償サポート等）は禁止**

@@ -117,6 +117,9 @@ function readNote(relativePath) {
 }
 
 function writeNote(relativePath, content) {
+  if (!relativePath.endsWith(".md")) {
+    throw new Error("Only Markdown files (.md) can be written");
+  }
   const fullPath = resolveVaultPath(relativePath);
   const dir = path.dirname(fullPath);
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });

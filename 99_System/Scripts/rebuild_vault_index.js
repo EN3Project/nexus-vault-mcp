@@ -18,7 +18,16 @@ const VAULT_PATH = process.env.NEXUS_VAULT_PATH || path.resolve("index");
 const INDEX_PATH = process.env.NEXUS_INDEX_PATH || path.resolve("99_System", "VaultIndex.md");
 
 // index/ からの相対パスで除外するディレクトリプレフィックス
-const EXCLUDE_PREFIXES = ["Daily_Notes", "00_Inbox/Archive"];
+const EXCLUDE_PREFIXES = [
+  "Daily_Notes",
+  "00_Inbox/Archive",
+  "99_System/Reports",
+  "99_System/Handoff",
+  "99_System/Memory",
+  "99_System/Scripts",
+  "99_System/Templates",
+  "99_System/Tests",
+];
 
 function isExcluded(relFromVault) {
   return EXCLUDE_PREFIXES.some(
