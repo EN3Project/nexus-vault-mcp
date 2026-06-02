@@ -1,8 +1,5 @@
 # Knowledge Nexus
 
-> **汎用テンプレートをお探しの方は → [knowledge-nexus-template](https://github.com/EN3Project/knowledge-nexus-template)**
-> このリポジトリは開発ログ・Zenn 記事アーカイブとして維持しています。
-
 **あなたのセカンドブレインを、AI ネイティブに。**
 
 膨大な情報を AI エージェント組織に処理させ、あなたには圧縮されたエッセンスだけを届ける——  
@@ -13,6 +10,15 @@ Claude、Gemini、Codex など、[MCP](https://modelcontextprotocol.io/) 対応�
 あなたのノート。あなたの AI。ベンダーロックインなし。
 
 **[ランディングページ →](https://en3project.github.io/knowledge-nexus/)**
+
+---
+
+## どちらを使う？
+
+| | リポジトリ | こんな方に |
+|---|---|---|
+| 🚀 **まず試したい** | [knowledge-nexus-template](https://github.com/EN3Project/knowledge-nexus-template) | 汎用テンプレートとして clone して使いたい・個人情報なしのクリーンな出発点が欲しい |
+| 🔧 **フルシステムを直接使いたい** | このリポジトリ | 開発ログ・運用事例を参照しながら使いたい・中身を理解したうえでカスタマイズしたい |
 
 ---
 
